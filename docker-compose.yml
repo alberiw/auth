@@ -1,0 +1,15 @@
+version: '3'
+services:
+    auth:
+        image: auth:SNAPSHOT
+        ports:
+            - '8080:8080'
+        environment:
+            JWT_SECRET: secret
+    pg:
+        image: postgres:12-alpine
+        ports:
+            - '5432:5432'
+        environment:
+            POSTGRES_USER: 'postgres'
+            POSTGRES_PASSWORD: 'postgres'
