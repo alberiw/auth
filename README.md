@@ -38,3 +38,10 @@ Rollback:
 ```
 knex migrate:rollback
 ```
+
+
+TODO:
+
+https://www.npmjs.com/package/dockerode
+https://www.npmjs.com/package/docker-await-postgres
+https://www.npmjs.com/package/exit-hook

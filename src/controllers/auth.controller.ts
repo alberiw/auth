@@ -1,22 +1,15 @@
 import { Request, Response } from 'express'
-import { ILoginDto } from '../dto/auth.dto'
-import { ITokenDto } from '../dto/token.dto'
+import { LoginDto } from '../dto/auth.dto'
+import { TokenDto } from '../dto/token.dto'
 import { Token } from '../models/token.model'
 import { logout, refresh as refreshToken, login, jwks } from '../services/auth.service'
 
-interface IAuthController {
-	login(req: Request, res: Response): Promise<void>
-	refresh(req: Request, res: Response): Promise<void>
-	logout(req: Request, res: Response): Promise<void>
-	jwks(req: Request, res: Response): Promise<void>
-}
-
-export const AuthController: IAuthController = {
+export const AuthController = {
 	async login(req: Request, res: Response): Promise<void> {
-		const userDto: ILoginDto = req.body
+		const userDto: LoginDto = req.body
 		try {
 			const { access, refresh }: Token = await login(userDto.login, userDto.password)
-			const response: ITokenDto = {
+			const response: TokenDto = {
 				access,
 				refresh
 			}
@@ -30,7 +23,7 @@ export const AuthController: IAuthController = {
 		const token: string = req.body
 		try {
 			const { access, refresh }: Token = await refreshToken(token)
-			const response: ITokenDto = {
+			const response: TokenDto = {
 				access,
 				refresh
 			}

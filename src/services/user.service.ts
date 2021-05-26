@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt'
 import { User, ChangePassword } from '../models/user.model'
-import { getUserById, saveUser, updateUser } from '../repositories/user.repository'
+import { getUserById, saveUser, updateUser, deleteUser as deleteUsr } from '../repositories/user.repository'
 
 export const createUser = async (user: User): Promise<void> => {
 	const hash: string = await bcrypt.hash(user.password, 10)
@@ -12,7 +12,7 @@ export const createUser = async (user: User): Promise<void> => {
 }
 
 export const deleteUser = async (id: string): Promise<void> => {
-	await deleteUser(id)
+	await deleteUsr(id)
 }
 
 export const changePassword = async (model: ChangePassword): Promise<void> => {

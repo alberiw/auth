@@ -4,7 +4,7 @@ import { JwtType } from '../models/jwt.model'
 
 const BEARER = 'Bearer'
 
-export const middleware = (req: Request, res: Response, next: NextFunction): Response<any> | void => {
+export const middleware = (req: Request, res: Response, next: NextFunction): any => {
 	if (!req.headers.authorization) {
 		return res.status(401).send({ error: 'Authorization is missing' })
 	}
